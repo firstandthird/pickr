@@ -1,0 +1,3 @@
+dist:
+  src: 'lib/template.html'
+  dest: 'dist/fidel.<%= name %>.js'
