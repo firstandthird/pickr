@@ -46,4 +46,39 @@ suite('pickr', function() {
       assert.equal($('.pickr-modal').length, 0);
     });
   });
+
+  suite('month render', function() {
+    test('modal should show one month', function() {
+      var el = $('#date-picker');
+
+      el.pickr();
+
+      el.focus();
+
+      assert.equal($('.pickr-month').length, 1);
+    });
+  });
+
+  suite('date helpers', function() {
+    test('number of days in month', function() {
+      var el = $('#date-picker');
+
+      el.pickr();
+
+      assert.equal(el.pickr('daysInMonth', new Date(2013, 0, 1)), 31);
+      assert.equal(el.pickr('daysInMonth', new Date(2013, 1, 1)), 28);
+      assert.equal(el.pickr('daysInMonth', new Date(2013, 3, 1)), 30);
+
+      //Check leapyear
+      assert.equal(el.pickr('daysInMonth', new Date(2012, 1, 1)), 29);
+    });
+
+    test('month start index', function(){
+      var el = $('#date-picker');
+
+      el.pickr();
+
+      assert.equal(el.pickr('monthStartIndex', new Date(2013, 10, 1)), 5);
+    });
+  });
 });
