@@ -6,6 +6,10 @@ lib:
     - 'lib/template.html'
   tasks:
     - 'scripts'
+styles:
+  files:
+    - 'less/*'
+  tasks: 'less'
 test:
   files:
     - '<%= jshint.test %>'

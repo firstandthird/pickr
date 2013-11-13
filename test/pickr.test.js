@@ -32,7 +32,7 @@ suite('pickr', function() {
       assert.equal($('.pickr-container').length, 1);
     });
 
-    test('pickr should hide on blur', function() {
+    test('pickr should hide on blur', function(done) {
       var el = $('#date-picker');
 
       el.pickr();
@@ -43,7 +43,27 @@ suite('pickr', function() {
 
       el.blur();
 
-      assert.ok($('.pickr-container').is(':empty'));
+      setTimeout(function(){
+        assert.ok($('.pickr-container').is(':empty'));
+        done();
+      }, 110);
+    });
+
+    test('pickr should not hide when clicked', function(done) {
+      var el = $('#date-picker');
+
+      el.pickr();
+
+      el.focus();
+
+      assert.ok(!$('.pickr-container').is(':empty'));
+
+      $('.pickr-container').click();
+
+      setTimeout(function(){
+        assert.ok(!$('.pickr-container').is(':empty'));
+        done();
+      }, 110);
     });
   });
 
