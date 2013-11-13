@@ -78,4 +78,28 @@
       padding: 10px 0;
     }
   }
+
+  .pickr-prev-month, .pickr-next-month {
+    width: 32px;
+    font-size: @monthHeaderFontSize;
+    padding: 10px;
+    overflow: hidden;
+    text-indent: -999px;
+    border: 0;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    top: -1px;
+  }
+
+  .pickr-prev-month {
+    border-right: 1px solid #413a36;
+    background-image: url('../example/prev.png');
+  }
+
+  .pickr-next-month {
+    border-left: 1px solid #413a36;
+    background-image: url('../example/next.png');
+  }
 }

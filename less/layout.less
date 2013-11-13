@@ -5,6 +5,7 @@
   -ms-user-select: none;
   user-select: none;
   position: relative;
+  display: inline-block;
 
   .pickr-clearfix() {
     content: ".";
@@ -13,6 +14,10 @@
     visibility: hidden;
     line-height: 0;
     height: 0;
+  }
+
+  &:after {
+    .pickr-clearfix();
   }
 
   * {
@@ -24,7 +29,7 @@
     .pickr-month {
       float: left;
     }
-    
+
     &:after {
       .pickr-clearfix();
     }
@@ -68,5 +73,18 @@
     &:after {
       .pickr-clearfix();
     }
+  }
+
+  .pickr-prev-month, .pickr-next-month {
+    position: absolute;
+    top: 0;
+  }
+
+  .pickr-prev-month {
+    left: 0;
+  }
+
+  .pickr-next-month {
+    right: 0;
   }
 }

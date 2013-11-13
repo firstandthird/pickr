@@ -71,7 +71,9 @@ suite('pickr', function() {
     test('modal should show one month', function() {
       var el = $('#date-picker');
 
-      el.pickr();
+      el.pickr({
+        displayMonths: 1
+      });
 
       el.focus();
 
@@ -81,7 +83,9 @@ suite('pickr', function() {
     test('should have a div for each day', function() {
       var el = $('#date-picker');
 
-      el.pickr();
+      el.pickr({
+        displayMonths: 1
+      });
 
       el.focus();
 
