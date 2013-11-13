@@ -7,5 +7,6 @@ dist:
 full:
   src:
     - 'dist/_bower.js'
+    - 'lib/timeformat.js'
     - 'lib/<%= name %>.js'
   dest: 'dist/<%= name %>.js'

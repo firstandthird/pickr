@@ -1,10 +1,18 @@
-<div class="pickr-modal">
-  <div class="picker-months">
-    Months
-    <% for (var i = 0; i < months.length; i++) { var month = months[i]; %>
-      <div class="picker-month">
-
+<div class="pickr-months">
+  Months
+  <% for (var i = 0; i < months.length; i++) { var month = months[i]; %>
+    <div class="pickr-month">
+      <div class="pickr-month-title"><%= timef('%F', month.date) %></div>
+      <div class="pickr-days">
+        <div class="pickr-days-labels">
+          <% for(var l = 0; l < dayLabels.length; l++) { %>
+          <div class="pickr-days-label"><%= dayLabels[l] %></div>
+          <% } %>
+        </div>
+        <% for(var d = 1; d < month.days+1; d++) { %>
+        <div class="pickr-day"><%= d %></div>
+        <% } %>
       </div>
-    <% } %>
-  </div>
+    </div>
+  <% } %>
 </div>

@@ -1,6 +1,6 @@
 suite('pickr', function() {
   teardown(function(){
-    $('.pickr-modal').remove();
+    $('.pickr-container').remove();
     var el = $('#date-picker');
     el.unbind();
     el.removeData();
@@ -29,7 +29,7 @@ suite('pickr', function() {
 
       el.focus();
 
-      assert.equal($('.pickr-modal').length, 1);
+      assert.equal($('.pickr-container').length, 1);
     });
 
     test('pickr should hide on blur', function() {
@@ -39,11 +39,11 @@ suite('pickr', function() {
 
       el.focus();
 
-      assert.equal($('.pickr-modal').length, 1);
+      assert.ok(!$('.pickr-container').is(':empty'));
 
       el.blur();
 
-      assert.equal($('.pickr-modal').length, 0);
+      assert.ok($('.pickr-container').is(':empty'));
     });
   });
 
@@ -56,6 +56,16 @@ suite('pickr', function() {
       el.focus();
 
       assert.equal($('.pickr-month').length, 1);
+    });
+
+    test('should have a div for each day', function() {
+      var el = $('#date-picker');
+
+      el.pickr();
+
+      el.focus();
+
+      assert.equal($('.pickr-day').length, el.pickr('daysInMonth', new Date()));
     });
   });
 

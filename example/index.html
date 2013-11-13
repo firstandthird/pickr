@@ -5,7 +5,17 @@
     <title>pickr example</title>
   </head>
   <body>
-
-    <script src="../dist/pickr.js"></script>
+    <form>
+      <input type="text" id="date-picker" data-pickr data-pickr-format="%Y-%m-%d" />
+    </form>
+    <script src="../bower_components/jquery/jquery.js"></script>
+    <script src="../bower_components/fidel/dist/fidel.js" data-cover></script>
+    <script src="../bower_components/template/dist/template.js"></script>
+    <script src="../bower_components/fidel-template/dist/fidel-template.js"></script>
+    <script src="../lib/timeformat.js" data-cover></script>
+    <script src="../dist/fidel.pickr.js" data-cover></script>
+    <script>
+      $('#date-picker').pickr();
+    </script>
   </body>
 </html>
