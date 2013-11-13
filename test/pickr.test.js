@@ -89,6 +89,27 @@ suite('pickr', function() {
     });
   });
 
+  suite('calendar actions', function() {
+    test('clicking a day should update input and close modal', function() {
+      var el = $('#date-picker');
+
+      el.pickr();
+
+      var date = new Date();
+
+      el.focus();
+
+      $('.pickr-day').first().click();
+
+      assert.equal(el.val(), date.getFullYear() + '-' + (date.getMonth() + 1) + '-01');
+
+      setTimeout(function(){
+        assert.ok(!$('.pickr-container').is(':empty'));
+        done();
+      }, 110);
+    });
+  });
+
   suite('date helpers', function() {
     test('number of days in month', function() {
       var el = $('#date-picker');

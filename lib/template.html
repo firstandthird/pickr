@@ -1,6 +1,6 @@
 <div class="pickr-months">
   <% for (var i = 0; i < months.length; i++) { var month = months[i]; %>
-    <div class="pickr-month">
+    <div class="pickr-month" data-pickr-date="<%= month.date %>">
       <div class="pickr-month-title"><%= timef('%F', month.date) %></div>
       <div class="pickr-days">
         <div class="pickr-days-labels">
