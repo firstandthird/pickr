@@ -14,7 +14,6 @@
   @daysLabelFontSize: 11px;
   @bufferBackground: #f9f9f9;
   @activeDayBackground: #c6dfed;
-  @activeDayColor: #3b86c4;
   @activeDayHoverBackground: #f3f8fc;
   ) {
   .pickr-layout();
@@ -51,9 +50,8 @@
         background: @activeDayHoverBackground;
       }
 
-      &.selected {
+      &:active {
         background: @activeDayBackground;
-        color: @activeDayColor;
       }
     }
 
