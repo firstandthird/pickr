@@ -20,7 +20,15 @@
     box-sizing: border-box;
   }
 
-
+  .pickr-months {
+    .pickr-month {
+      float: left;
+    }
+    
+    &:after {
+      .pickr-clearfix();
+    }
+  }
 
   .pickr-days-labels {
     .pickr-days-label {
