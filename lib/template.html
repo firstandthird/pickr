@@ -8,6 +8,15 @@
           <div class="pickr-days-label"><%= dayLabels[l] %></div>
           <% } %>
         </div>
+        
+        <% if(month.start > 0) { %>
+        <div class="pickr-day-buffer">
+          <% for(var d = 1; d < month.start+1; d++) { %>
+          <div class="pickr-empty-day">&nbsp;</div>
+          <% } %>
+        </div>
+        <% } %>
+
         <% for(var d = 1; d < month.days+1; d++) { %>
         <div class="pickr-day"><%= d %></div>
         <% } %>

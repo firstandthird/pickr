@@ -12,6 +12,10 @@
   @daysLabelBackground: #e4e4e4;
   @daysLabelColor: #372f2b;
   @daysLabelFontSize: 11px;
+  @bufferBackground: #f9f9f9;
+  @activeDayBackground: #c6dfed;
+  @activeDayColor: #3b86c4;
+  @activeDayHoverBackground: #f3f8fc;
   ) {
   .pickr-layout();
 
@@ -39,6 +43,26 @@
     .pickr-day {
       text-align: center;
       padding: 15px 0;
+      border-right: 1px solid @borderColor;
+      border-bottom: 1px solid @borderColor;
+      cursor: pointer;
+
+      &:hover {
+        background: @activeDayHoverBackground;
+      }
+
+      &.selected {
+        background: @activeDayBackground;
+        color: @activeDayColor;
+      }
+    }
+
+    .pickr-empty-day {
+      padding: 15px 0;
+    }
+
+    .pickr-day-buffer {
+      background: @bufferBackground;
       border-right: 1px solid @borderColor;
       border-bottom: 1px solid @borderColor;
     }

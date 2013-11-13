@@ -34,9 +34,23 @@
   }
 
   .pickr-days {
-    .pickr-day {
+    .pickr-day, .pickr-empty-day {
       width: 48px;
       float: left;
+    }
+
+    .pickr-day-buffer {
+      float: left;
+
+      .pickr-empty-day {
+        &:first-child {
+          width: 47px;
+        }
+      }
+
+      &:after {
+        .pickr-clearfix();
+      }
     }
 
     &:after {
