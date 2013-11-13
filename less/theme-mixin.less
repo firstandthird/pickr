@@ -1,0 +1,59 @@
+@import "layout";
+
+.pickr(
+  @fontSize: 15px;
+  @color: #372f2b;
+  @width: 337px;
+  @background: #fff;
+  @borderColor: #d6d6d6;
+  @monthHeaderBackground: #372f2b;
+  @monthHeaderColor: #fff;
+  @monthHeaderFontSize: 18px;
+  @daysLabelBackground: #e4e4e4;
+  @daysLabelColor: #372f2b;
+  @daysLabelFontSize: 11px;
+  ) {
+  .pickr-layout();
+
+  font-size: @fontSize;
+
+  .pickr-month {
+    width: @width;
+    color: #372f2b;
+  }
+
+  .pickr-month-title {
+    background: @monthHeaderBackground;
+    text-align: center;
+    color: @monthHeaderColor;
+    font-size: @monthHeaderFontSize;
+    padding: 10px;
+    text-shadow: 0 -2px 0 #231e1b;
+    border-radius: 3px;
+  }
+
+  .pickr-days {
+    background: @background;
+    border-left: 1px solid @borderColor;
+
+    .pickr-day {
+      text-align: center;
+      padding: 15px 0;
+      border-right: 1px solid @borderColor;
+      border-bottom: 1px solid @borderColor;
+    }
+  }
+
+  .pickr-days-labels {
+    background: @daysLabelBackground;
+    font-size: @daysLabelFontSize;
+    color: @daysLabelColor;
+    border-bottom: 1px solid @borderColor;
+    border-right: 1px solid @borderColor;
+
+    .pickr-days-label {
+      text-align: center;
+      padding: 10px 0;
+    }
+  }
+}

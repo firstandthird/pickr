@@ -1,0 +1,46 @@
+.pickr-layout() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+
+  .pickr-clearfix() {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+  }
+
+  * {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+
+
+  .pickr-days-labels {
+    .pickr-days-label {
+      width: 47px;
+      float: left;
+    }
+
+    &:after {
+      .pickr-clearfix();
+    }
+  }
+
+  .pickr-days {
+    .pickr-day {
+      width: 48px;
+      float: left;
+    }
+
+    &:after {
+      .pickr-clearfix();
+    }
+  }
+}
