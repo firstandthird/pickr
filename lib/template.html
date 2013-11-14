@@ -24,6 +24,14 @@
         <% var isPastDay = (!allowPastDays && ~~timef('%Y%m%d', new Date(month.date.getFullYear(), month.date.getMonth(), d)) < ~~timef('%Y%m%d', today)); %>
         <div class="pickr-day <%= isToday ? 'pickr-today' : '' %> <%= isPastDay ? 'pickr-past' : '' %>"><%= d %></div>
         <% } %>
+
+        <% if(month.end > 0) { %>
+        <div class="pickr-day-buffer">
+          <% for(var d = 1; d < month.end+1; d++) { %>
+          <div class="pickr-empty-day">&nbsp;</div>
+          <% } %>
+        </div>
+        <% } %>
       </div>
     </div>
   <% } %>

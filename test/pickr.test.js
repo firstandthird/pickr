@@ -215,5 +215,13 @@ suite('pickr', function() {
 
       assert.equal(el.pickr('monthStartIndex', new Date(2013, 10, 1)), 5);
     });
+
+    test('month end index', function(){
+      var el = $('#date-picker');
+
+      el.pickr();
+
+      assert.equal(el.pickr('monthEndIndex', new Date(2013, 11, 1)), 4);
+    });
   });
 });
