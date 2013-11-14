@@ -3,7 +3,12 @@
   <button type="button" class="pickr-next-month">Next</button>
   <% for (var i = 0; i < months.length; i++) { var month = months[i]; %>
     <div class="pickr-month" data-pickr-date="<%= month.date %>">
-      <div class="pickr-month-title"><%= timef('%F', month.date) %></div>
+      <div class="pickr-month-title">
+        <%= timef('%F', month.date) %>
+        <% if(today.getFullYear() !== month.date.getFullYear()) { %>
+          &nbsp; <span><%= timef('(%Y)', month.date) %></span>
+        <% } %>
+      </div>
       <div class="pickr-days">
         <div class="pickr-days-labels">
           <% for(var l = 0; l < dayLabels.length; l++) { %>

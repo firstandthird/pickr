@@ -127,7 +127,7 @@ suite('pickr', function() {
 
       $('.pickr-prev-month').click();
 
-      assert.equal($('.pickr-month-title').first().text(), 'October');
+      assert.equal($.trim($('.pickr-month-title').first().text()), 'October');
     });
 
     test('clicking next arrow should advance month', function() {
@@ -141,7 +141,7 @@ suite('pickr', function() {
 
       $('.pickr-next-month').click();
 
-      assert.equal($('.pickr-month-title').first().text(), 'December');
+      assert.equal($.trim($('.pickr-month-title').first().text()), 'December');
     });
 
     test('clicking month title should go to today', function() {
@@ -156,7 +156,7 @@ suite('pickr', function() {
       $('.pickr-prev-month').click();
       $('.pickr-month-title').click();
 
-      assert.equal($('.pickr-month-title').first().text(), 'November');
+      assert.equal($.trim($('.pickr-month-title').first().text()), 'November');
     });
   });
 
