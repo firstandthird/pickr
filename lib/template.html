@@ -20,7 +20,7 @@
         <% } %>
 
         <% for(var d = 1; d < month.days+1; d++) { %>
-        <div class="pickr-day"><%= d %></div>
+        <div class="pickr-day <%= (today.getMonth() === month.date.getMonth() && today.getDate() === d) ? 'today' : '' %>"><%= d %></div>
         <% } %>
       </div>
     </div>

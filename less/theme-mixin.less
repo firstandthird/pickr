@@ -15,6 +15,7 @@
   @bufferBackground: #f9f9f9;
   @activeDayBackground: #c6dfed;
   @activeDayHoverBackground: #f3f8fc;
+  @todayBackground: #f1f7f0;
   ) {
   .pickr-layout();
 
@@ -45,6 +46,10 @@
       border-right: 1px solid @borderColor;
       border-bottom: 1px solid @borderColor;
       cursor: pointer;
+
+      &.today {
+        background-color: @todayBackground;
+      }
 
       &:hover {
         background: @activeDayHoverBackground;
