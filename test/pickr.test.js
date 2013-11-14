@@ -1,3 +1,5 @@
+var clickTimeout = 210;
+
 suite('pickr', function() {
   teardown(function(){
     $('.pickr-container').remove();
@@ -47,7 +49,7 @@ suite('pickr', function() {
       setTimeout(function(){
         assert.ok($('.pickr-container').is(':empty'));
         done();
-      }, 110);
+      }, clickTimeout);
     });
 
     test('pickr should not hide when clicked', function(done) {
@@ -64,7 +66,7 @@ suite('pickr', function() {
       setTimeout(function(){
         assert.ok(!$('.pickr-container').is(':empty'));
         done();
-      }, 110);
+      }, clickTimeout);
     });
   });
 
@@ -111,7 +113,7 @@ suite('pickr', function() {
       setTimeout(function(){
         assert.ok(!$('.pickr-container').is(':empty'));
         done();
-      }, 110);
+      }, clickTimeout);
     });
 
     test('clicking previous arrow should change month back', function() {
