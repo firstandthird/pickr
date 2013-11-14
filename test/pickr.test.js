@@ -4,6 +4,7 @@ suite('pickr', function() {
     var el = $('#date-picker');
     el.unbind();
     el.removeData();
+    el.val('');
     el.blur();
   });
 
@@ -111,6 +112,83 @@ suite('pickr', function() {
         assert.ok(!$('.pickr-container').is(':empty'));
         done();
       }, 110);
+    });
+
+    test('clicking previous arrow should change month back', function() {
+      var el = $('#date-picker');
+
+      el.pickr({
+        currentMonth: new Date(2013, 10, 1)
+      });
+
+      el.focus();
+
+      $('.pickr-prev-month').click();
+
+      assert.equal($('.pickr-month-title').first().text(), 'October');
+    });
+
+    test('clicking next arrow should advance month', function() {
+      var el = $('#date-picker');
+
+      el.pickr({
+        currentMonth: new Date(2013, 10, 1)
+      });
+
+      el.focus();
+
+      $('.pickr-next-month').click();
+
+      assert.equal($('.pickr-month-title').first().text(), 'December');
+    });
+
+    test('clicking month title should go to today', function() {
+      var el = $('#date-picker');
+
+      el.pickr({
+        currentMonth: new Date(2013, 10, 1)
+      });
+
+      el.focus();
+
+      $('.pickr-prev-month').click();
+      $('.pickr-month-title').click();
+
+      assert.equal($('.pickr-month-title').first().text(), 'November');
+    });
+  });
+
+  suite('past events', function() {
+    test('if past events disabled, day should have class', function() {
+      var el = $('#date-picker');
+
+      el.pickr({
+        currentMonth: new Date(2013, 10, 1),
+        allowPastDays: false
+      });
+
+      el.focus();
+
+      $('.pickr-prev-month').click();
+
+      assert.ok($('.pickr-day').first().hasClass('pickr-past'));
+    });
+
+    test('clicking past day when disabled shouldn\'t update input', function() {
+      var el = $('#date-picker');
+
+      el.pickr({
+        currentMonth: new Date(2013, 10, 1),
+        allowPastDays: false
+      });
+
+      el.focus();
+
+      $('.pickr-prev-month').click();
+
+      $('.pickr-past').first().click();
+
+      assert.equal(el.val(), '');
     });
   });
 

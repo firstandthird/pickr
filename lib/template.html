@@ -20,7 +20,9 @@
         <% } %>
 
         <% for(var d = 1; d < month.days+1; d++) { %>
-        <div class="pickr-day <%= (today.getMonth() === month.date.getMonth() && today.getDate() === d) ? 'today' : '' %>"><%= d %></div>
+        <% var isToday = (today.getMonth() === month.date.getMonth() && today.getDate() === d); %>
+        <% var isPastDay = (!allowPastDays && ~~timef('%Y%m%d', new Date(month.date.getFullYear(), month.date.getMonth(), d)) < ~~timef('%Y%m%d', today)); %>
+        <div class="pickr-day <%= isToday ? 'pickr-today' : '' %> <%= isPastDay ? 'pickr-past' : '' %>"><%= d %></div>
         <% } %>
       </div>
     </div>
