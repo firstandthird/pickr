@@ -1,4 +1,10 @@
 
+0.1.5 / 2013-11-18 
+==================
+
+ * Merge pull request #5 from firstandthird/feature/3-timeformat-not-included
+ * Includes TimeFormat in dist build.
+
 0.1.4 / 2013-11-18 
 ==================
 
