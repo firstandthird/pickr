@@ -1,4 +1,10 @@
 
+0.1.4 / 2013-11-18 
+==================
+
+ * Merge pull request #4 from firstandthird/feature/2-switch-arrows-html
+ * Changed arrows to be html.
+
 0.1.2 / 2013-11-18 
 ==================
 
