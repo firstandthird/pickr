@@ -1,5 +1,10 @@
 
-0.0.1 / 2013-11-18 
+0.1.1 / 2013-11-18 
+==================
+
+ * Fixed template generation in grunt.
+
+0.1.0 / 2013-11-18 
 ==================
 
  * Style updates and an attempt to fix blur issues.
