@@ -1,0 +1,166 @@
+.pickr-container {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  display: block;
+  font-size: 15px;
+}
+.pickr-container:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.pickr-container * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.pickr-container .pickr-months .pickr-month {
+  float: left;
+}
+.pickr-container .pickr-months:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.pickr-container .pickr-days-labels .pickr-days-label {
+  width: 48px;
+  float: left;
+}
+.pickr-container .pickr-days-labels .pickr-days-label:first-child {
+  width: 47px;
+}
+.pickr-container .pickr-days-labels:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.pickr-container .pickr-days .pickr-day,
+.pickr-container .pickr-days .pickr-empty-day {
+  width: 48px;
+  float: left;
+}
+.pickr-container .pickr-days .pickr-day-buffer {
+  float: left;
+}
+.pickr-container .pickr-days .pickr-day-buffer .pickr-empty-day:first-child {
+  width: 47px;
+}
+.pickr-container .pickr-days .pickr-day-buffer:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.pickr-container .pickr-days:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.pickr-container .pickr-prev-month,
+.pickr-container .pickr-next-month {
+  position: absolute;
+  top: 0;
+}
+.pickr-container .pickr-prev-month {
+  left: 0;
+}
+.pickr-container .pickr-next-month {
+  right: 0;
+}
+.pickr-container .pickr-month {
+  width: 337px;
+  color: #372f2b;
+}
+.pickr-container .pickr-month-title {
+  background: #372f2b;
+  text-align: center;
+  color: #ffffff;
+  font-size: 18px;
+  padding: 10px;
+  text-shadow: 0 -2px 0 #231e1b;
+  border-radius: 3px;
+}
+.pickr-container .pickr-days {
+  background: #ffffff;
+  border-left: 1px solid #d6d6d6;
+}
+.pickr-container .pickr-days .pickr-day {
+  text-align: center;
+  padding: 15px 0;
+  border-right: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  cursor: pointer;
+}
+.pickr-container .pickr-days .pickr-day.pickr-today {
+  background-color: #f1f7f0;
+}
+.pickr-container .pickr-days .pickr-day.pickr-past {
+  background-color: #fdfdfd;
+  color: #e4e4e4;
+  cursor: default;
+}
+.pickr-container .pickr-days .pickr-day:hover {
+  background: #f3f8fc;
+}
+.pickr-container .pickr-days .pickr-day:active {
+  background: #c6dfed;
+}
+.pickr-container .pickr-days .pickr-empty-day {
+  padding: 15px 0;
+}
+.pickr-container .pickr-days .pickr-day-buffer {
+  background: #f9f9f9;
+  border-right: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+}
+.pickr-container .pickr-days-labels {
+  background: #e4e4e4;
+  font-size: 11px;
+  color: #372f2b;
+  border-bottom: 1px solid #d6d6d6;
+  border-right: 1px solid #d6d6d6;
+}
+.pickr-container .pickr-days-labels .pickr-days-label {
+  text-align: center;
+  padding: 10px 0;
+}
+.pickr-container .pickr-prev-month,
+.pickr-container .pickr-next-month {
+  width: 32px;
+  font-size: 18px;
+  padding: 10px;
+  overflow: hidden;
+  text-indent: -999px;
+  border: 0;
+  background-color: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  top: -1px;
+  outline: none;
+}
+.pickr-container .pickr-prev-month {
+  border-right: 1px solid #413a36;
+  background-image: url('../example/prev.png');
+}
+.pickr-container .pickr-next-month {
+  border-left: 1px solid #413a36;
+  background-image: url('../example/next.png');
+}
