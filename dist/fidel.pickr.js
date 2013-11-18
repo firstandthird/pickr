@@ -1,7 +1,7 @@
 
 /*!
  * pickr - A javascript datepicker
- * v0.1.0
+ * v0.1.2
  * https://github.com/firstandthird/pickr
  * copyright First + Third 2013
  * MIT License
@@ -120,6 +120,7 @@
 
     selectDate: function(date) {
       this.el.val(TimeFormat(this.dateFormat, date));
+      this.el.trigger('input');
       this.el.blur();
     },
 
