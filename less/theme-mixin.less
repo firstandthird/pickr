@@ -31,7 +31,7 @@
   .pickr-month-title {
     background: @monthHeaderBackground;
     text-align: center;
-    color: @monthHeaderColor;
+    color: @monthHeaderColor; 
     font-size: @monthHeaderFontSize;
     padding: 10px;
     text-shadow: 0 -2px 0 #231e1b;
@@ -97,23 +97,20 @@
     font-size: @monthHeaderFontSize;
     padding: 10px;
     overflow: hidden;
-    text-indent: -999px;
     border: 0;
     background-color: transparent;
-    background-position: center center;
-    background-repeat: no-repeat;
     cursor: pointer;
     top: -1px;
     outline: none;
+    text-shadow: 0 -2px 0 #231e1b;
+    color: @monthHeaderColor;
   }
 
   .pickr-prev-month {
     border-right: 1px solid #413a36;
-    background-image: url('../example/prev.png');
   }
 
   .pickr-next-month {
     border-left: 1px solid #413a36;
-    background-image: url('../example/next.png');
   }
 }
