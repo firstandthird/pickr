@@ -5,11 +5,11 @@ var monthNames = [ "January", "February", "March", "April", "May", "June",
 suite('pickr', function() {
   teardown(function(){
     $('.pickr-container').remove();
-    var el = $('#date-picker');
-    el.unbind();
-    el.removeData();
-    el.val('');
-    el.blur();
+    var els = $('.test-subject');
+    els.unbind();
+    els.removeData();
+    els.val('');
+    els.blur();
   });
 
   suite('init', function() {
@@ -23,6 +23,45 @@ suite('pickr', function() {
       el.pickr();
 
       assert.ok(el.hasClass('pickr'));
+    });
+
+    test('pickr class on div', function () {
+      var el = $('#inline');
+
+      el.pickr();
+
+      assert.ok(el.hasClass('pickr'));
+      assert.ok(el.next().attr('style') !== '');
+      assert.ok(el.next().hasClass('pickr-container'));
+    });
+  });
+
+  suite('Event binding', function () {
+    test('pickr should bind to focus and blur on the element and click on the container', function () {
+      var el = $('#date-picker'),
+        container, elEvents, containerEvents;
+
+      el.pickr();
+      container = el.next();
+      elEvents = $._data(el.get(0), 'events');
+      containerEvents = $._data(container.get(0), 'events');
+
+      assert.equal(elEvents.focus.length, 1);
+      assert.equal(elEvents.blur.length, 1);
+      assert.equal(containerEvents.click.length, 2);
+    });
+    test('pickr should not bind to focus and blur on an inline element but yes on click on the container', function () {
+      var el = $('#inline'),
+        container, elEvents, containerEvents;
+
+      el.pickr();
+      container = el.next();
+      elEvents = $._data(el.get(0), 'events');
+      containerEvents = $._data(container.get(0), 'events');
+
+      assert.ok(typeof elEvents.focus === 'undefined');
+      assert.ok(typeof elEvents.blur === 'undefined');
+      assert.equal(containerEvents.click.length, 2);
     });
   });
 
@@ -121,6 +160,27 @@ suite('pickr', function() {
         assert.ok(!$('.pickr-container').is(':empty'));
         done();
       }, clickTimeout);
+    });
+
+    test('selecting a date should fire a custom event', function (done) {
+      var el = $('#date-picker');
+
+      var date = new Date();
+      el.pickr();
+      el.focus();
+
+      var month = date.getMonth() + 1;
+
+      if (month < 10){
+        month = '0' + month;
+      }
+
+      el.on('pickr:selected', function (e, value) {
+        assert.equal(value, date.getFullYear() + '-' + month + '-01');
+        done();
+      });
+
+      $('.pickr-day').first().click();
     });
 
     test('clicking previous arrow should change month back', function() {
