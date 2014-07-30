@@ -1,4 +1,6 @@
 var clickTimeout = 210;
+var monthNames = [ "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December" ];
 
 suite('pickr', function() {
   teardown(function(){
@@ -107,8 +109,13 @@ suite('pickr', function() {
       el.focus();
 
       $('.pickr-day').first().click();
+      var month = date.getMonth() + 1;
 
-      assert.equal(el.val(), date.getFullYear() + '-' + (date.getMonth() + 1) + '-01');
+      if (month < 10){
+        month = '0' + month;
+      }
+
+      assert.equal(el.val(), date.getFullYear() + '-' + month + '-01');
 
       setTimeout(function(){
         assert.ok(!$('.pickr-container').is(':empty'));
@@ -127,7 +134,7 @@ suite('pickr', function() {
 
       $('.pickr-prev-month').click();
 
-      assert.equal($.trim($('.pickr-month-title').first().text()), 'October');
+      assert.ok($.trim($('.pickr-month-title').first().text()).indexOf('October') > -1);
     });
 
     test('clicking next arrow should advance month', function() {
@@ -141,7 +148,7 @@ suite('pickr', function() {
 
       $('.pickr-next-month').click();
 
-      assert.equal($.trim($('.pickr-month-title').first().text()), 'December');
+      assert.ok($.trim($('.pickr-month-title').first().text()).indexOf('December') > -1);
     });
 
     test('clicking month title should go to today', function() {
@@ -156,7 +163,7 @@ suite('pickr', function() {
       $('.pickr-prev-month').click();
       $('.pickr-month-title').click();
 
-      assert.equal($.trim($('.pickr-month-title').first().text()), 'November');
+      assert.equal($.trim($('.pickr-month-title').first().text()), monthNames[new Date().getMonth()]);
     });
   });
 
