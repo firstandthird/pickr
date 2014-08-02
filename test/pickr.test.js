@@ -147,7 +147,7 @@ suite('pickr', function() {
 
       el.focus();
 
-      $('.pickr-day').first().click();
+      var $day = $('.pickr-day').first().click();
       var month = date.getMonth() + 1;
 
       if (month < 10){
@@ -155,6 +155,7 @@ suite('pickr', function() {
       }
 
       assert.equal(el.val(), date.getFullYear() + '-' + month + '-01');
+      assert.ok($day.hasClass('pickr-day--selected'));
 
       setTimeout(function(){
         assert.ok(!$('.pickr-container').is(':empty'));
@@ -211,6 +212,25 @@ suite('pickr', function() {
       assert.ok($.trim($('.pickr-month-title').first().text()).indexOf('December') > -1);
     });
 
+    test('A selected day should persist when changing months', function () {
+      var el = $('#date-picker'),
+        pickr;
+
+      el.pickr({
+        currentMonth: new Date(2013, 10, 1)
+      });
+
+      el.focus();
+      pickr = el.data('pickr');
+
+      var day = $('.pickr-day').first().click().text();
+
+      pickr.nextMonth();
+      pickr.prevMonth();
+
+      assert.equal($('.pickr-day--selected').text(), day);
+    });
+
     test('clicking month title should go to today', function() {
       var el = $('#date-picker');
 
@@ -224,6 +244,50 @@ suite('pickr', function() {
       $('.pickr-month-title').click();
 
       assert.equal($.trim($('.pickr-month-title').first().text()), monthNames[new Date().getMonth()]);
+    });
+  });
+
+  suite('multiple date calendar', function () {
+    var el, pickr, $day;
+
+    setup(function () {
+      el = $('#inline');
+
+      el.pickr({
+        multiple: 2
+      });
+
+      $day = $('.pickr-day');
+      pickr = el.data('pickr');
+    });
+
+    test('should only allow to select n given dates', function () {
+      var called = 0;
+
+      el.on('pickr:selected', function (e, values) {
+        called++;
+        assert.ok(Array.isArray(values));
+        assert.ok(values.length === called);
+      });
+
+      $day.eq(0).click();
+      $day.eq(1).click();
+      $day.eq(2).click();
+
+      assert.equal(called, 2);
+    });
+    test('dates can be un selected when they\'re clicked twice', function () {
+      var called = 0;
+
+      el.on('pickr:selected', function () {
+        called++;
+      });
+
+      $day.eq(0).click();
+      $day.eq(0).click();
+
+      assert.equal(called, 2);
+      assert.equal(pickr.value.length, 0);
     });
   });
 
