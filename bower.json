@@ -1,7 +1,7 @@
 {
   "name": "pickr",
   "description": "A javascript datepicker",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "homepage": "https://github.com/firstandthird/pickr",
   "license": "MIT",
   "copyright": "First + Third",

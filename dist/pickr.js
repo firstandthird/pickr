@@ -1,16 +1,16 @@
 
 /*!
  * pickr - A javascript datepicker
- * v0.1.4
+ * v0.2.0
  * https://github.com/firstandthird/pickr
- * copyright First + Third 2013
+ * copyright First + Third 2014
  * MIT License
 */
 /*!
  * fidel - a ui view controller
- * v2.2.3
+ * v2.2.5
  * https://github.com/jgallen23/fidel
- * copyright Greg Allen 2013
+ * copyright Greg Allen 2014
  * MIT License
 */
 (function(w, $) {
@@ -22,6 +22,7 @@
   Fidel.prototype.__init = function(options) {
     $.extend(this, this.obj);
     this.id = _id++;
+    this.namespace = '.fidel' + this.id;
     this.obj.defaults = this.obj.defaults || {};
     $.extend(this, this.obj.defaults, options);
     $('body').trigger('FidelPreInit', this);
@@ -36,8 +37,8 @@
   Fidel.prototype.setElement = function(el) {
     this.el = el;
     this.getElements();
-    this.delegateEvents();
     this.dataElements();
+    this.delegateEvents();
     this.delegateActions();
   };
 
@@ -69,7 +70,6 @@
   };
 
   Fidel.prototype.delegateEvents = function() {
-    var self = this;
     if (!this.events)
       return;
     for (var key in this.events) {
@@ -80,12 +80,12 @@
       var method = this.proxy(this[methodName]);
 
       if (selector === '') {
-        this.el.on(eventName, method);
+        this.el.on(eventName + this.namespace, method);
       } else {
         if (this[selector] && typeof this[selector] != 'function') {
-          this[selector].on(eventName, method);
+          this[selector].on(eventName + this.namespace, method);
         } else {
-          this.el.on(eventName, selector, method);
+          this.el.on(eventName + this.namespace, selector, method);
         }
       }
     }
@@ -93,7 +93,7 @@
 
   Fidel.prototype.delegateActions = function() {
     var self = this;
-    self.el.on('click', '[data-action]', function(e) {
+    self.el.on('click'+this.namespace, '[data-action]', function(e) {
       var el = $(this);
       var action = el.attr('data-action');
       if (self[action]) {
@@ -103,15 +103,15 @@
   };
 
   Fidel.prototype.on = function(eventName, cb) {
-    this.el.on(eventName+'.fidel'+this.id, cb);
+    this.el.on(eventName+this.namespace, cb);
   };
 
   Fidel.prototype.one = function(eventName, cb) {
-    this.el.one(eventName+'.fidel'+this.id, cb);
+    this.el.one(eventName+this.namespace, cb);
   };
 
   Fidel.prototype.emit = function(eventName, data, namespaced) {
-    var ns = (namespaced) ? '.fidel'+this.id : '';
+    var ns = (namespaced) ? this.namespace : '';
     this.el.trigger(eventName+ns, data);
   };
 
@@ -135,7 +135,7 @@
   Fidel.prototype.destroy = function() {
     this.el.empty();
     this.emit('destroy');
-    this.el.unbind('.fidel'+this.id);
+    this.el.unbind(this.namespace);
   };
 
   Fidel.declare = function(obj) {
@@ -361,29 +361,41 @@
       hideDelay: 150,
 
       displayMonths: 1,
-      template: '<div class="pickr-months">  <button type="button" class="pickr-prev-month">&lsaquo;</button>  <button type="button" class="pickr-next-month">&rsaquo;</button>  <% for (var i = 0; i < months.length; i++) { var month = months[i]; %>    <div class="pickr-month" data-pickr-date="<%= month.date %>">      <div class="pickr-month-title">        <%= timef(\'%F\', month.date) %>        <% if(today.getFullYear() !== month.date.getFullYear()) { %>          &nbsp; <span><%= timef(\'(%Y)\', month.date) %></span>        <% } %>      </div>      <div class="pickr-days">        <div class="pickr-days-labels">          <% for(var l = 0; l < dayLabels.length; l++) { %>          <div class="pickr-days-label"><%= dayLabels[l] %></div>          <% } %>        </div>                <% if(month.start > 0) { %>        <div class="pickr-day-buffer">          <% for(var d = 1; d < month.start+1; d++) { %>          <div class="pickr-empty-day">&nbsp;</div>          <% } %>        </div>        <% } %>        <% for(var d = 1; d < month.days+1; d++) { %>        <% var isToday = (today.getMonth() === month.date.getMonth() && today.getDate() === d); %>        <% var isPastDay = (!allowPastDays && ~~timef(\'%Y%m%d\', new Date(month.date.getFullYear(), month.date.getMonth(), d)) < ~~timef(\'%Y%m%d\', today)); %>        <div class="pickr-day <%= isToday ? \'pickr-today\' : \'\' %> <%= isPastDay ? \'pickr-past\' : \'\' %>"><%= d %></div>        <% } %>        <% if(month.end > 0) { %>        <div class="pickr-day-buffer">          <% for(var d = 1; d < month.end+1; d++) { %>          <div class="pickr-empty-day">&nbsp;</div>          <% } %>        </div>        <% } %>      </div>    </div>  <% } %></div>',
+      template: '<div class="pickr-months">  <button type="button" class="pickr-prev-month">&lsaquo;</button>  <button type="button" class="pickr-next-month">&rsaquo;</button>  <% for (var i = 0; i < months.length; i++) { var month = months[i]; %>    <div class="pickr-month" data-pickr-date="<%= month.date %>">      <div class="pickr-month-title">        <%= timef(\'%F\', month.date) %>        <% if(today.getFullYear() !== month.date.getFullYear()) { %>          &nbsp; <span><%= timef(\'(%Y)\', month.date) %></span>        <% } %>      </div>      <div class="pickr-days">        <div class="pickr-days-labels">          <% for(var l = 0; l < dayLabels.length; l++) { %>          <div class="pickr-days-label"><%= dayLabels[l] %></div>          <% } %>        </div>                <% if(month.start > 0) { %>        <div class="pickr-day-buffer">          <% for(var d = 1; d < month.start+1; d++) { %>          <div class="pickr-empty-day">&nbsp;</div>          <% } %>        </div>        <% } %>        <% for(var d = 1; d < month.days+1; d++) { %>        <% var isToday = (today.getMonth() === month.date.getMonth() && today.getDate() === d); %>        <% var isSelected = month.selected.indexOf(d) > -1; %>        <% var isPastDay = (!allowPastDays && ~~timef(\'%Y%m%d\', new Date(month.date.getFullYear(), month.date.getMonth(), d)) < ~~timef(\'%Y%m%d\', today)); %>        <div class="pickr-day<%= isToday ? \' pickr-today\' : \'\' %><%= isPastDay ? \' pickr-past\' : \'\' %><%= isSelected ? \' pickr-day--selected\' : \'\' %>"><%= d %></div>        <% } %>        <% if(month.end > 0) { %>        <div class="pickr-day-buffer">          <% for(var d = 1; d < month.end+1; d++) { %>          <div class="pickr-empty-day">&nbsp;</div>          <% } %>        </div>        <% } %>      </div>    </div>  <% } %></div>',
       currentMonth: new Date(),
       dayLabels: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
       dateFormat: '%Y-%m-%d',
-      allowPastDays: true
+      allowPastDays: true,
+      inline: false,
+      multiple: false
     },
 
     init: function() {
       this.el.addClass('pickr');
       this.pickrContainer = $('<div></div>').addClass('pickr-container');
       this.el.after(this.pickrContainer);
+      this.inline = this.el.prop('tagName').toLowerCase() !== 'input' || this.inline;
       this.focus = false;
+      this.value = [];
+      this.selectedDate = {};
 
       if(this.el.data('pickr-format')) {
         this.dateFormat = this.el.data('pickr-format');
       }
 
       this.bindEvents();
+
+      if (this.inline) {
+        this.showModal();
+      }
     },
 
     bindEvents: function() {
-      this.el.on('focus', this.proxy(this.showModal));
-      this.el.on('blur', this.proxy(this.hideModal));
+      if (!this.inline){
+        this.el.on('focus', this.proxy(this.showModal));
+        this.el.on('blur', this.proxy(this.hideModal));
+      }
+
       this.pickrContainer.on('click', this.proxy(this.containerClicked));
       this.pickrContainer.on('click', '*', this.proxy(this.containerClicked));
     },
@@ -396,6 +408,7 @@
 
         months.push({
           date: month,
+          selected: this.selectedInMonth(month),
           days: this.daysInMonth(month),
           start: this.monthStartIndex(month),
           end: this.monthEndIndex(month)
@@ -440,15 +453,34 @@
       clearTimeout(this.hideTimer);
       
       this.focus = true;
-      this.el.focus();
+
+      if (!this.inline) {
+        this.el.focus();
+      }
 
       var target = $(event.target);
 
       if(target.is('.pickr-day') && !target.is('.pickr-past')) {
         var daySelected = target.text();
         var selectedDate = new Date(target.parents('.pickr-month').data('pickr-date'));
-        selectedDate.setDate(daySelected);
-        this.selectDate(selectedDate);
+
+        if (!target.is('.pickr-day--selected')){
+          selectedDate.setDate(daySelected);
+
+          if (this.multiple === false){
+            this.pickrContainer.find('.pickr-day--selected').removeClass('pickr-day--selected');
+          }
+          else if (!this.canAddMoreDates()){
+            return;
+          }
+
+          target.addClass('pickr-day--selected');
+          this.selectDate(selectedDate);
+        }
+        else if (this.multiple !== false) {
+          target.removeClass('pickr-day--selected');
+          this.removeDate(selectedDate);
+        }
       }
 
       if(target.is('.pickr-prev-month')) {
@@ -464,10 +496,73 @@
       }
     },
 
+    removeDate: function (date) {
+      var value = TimeFormat(this.dateFormat, date);
+
+      var i = this.value.indexOf(value);
+      this.value.splice(i, 1);
+
+      var month = this.selectedDate[this.getDateKey(date)],
+        j = month.indexOf(date.getDate());
+
+      month.splice(j, 1);
+
+      this.updateValue(this.value.join(' '));
+    },
+
+    getDateKey: function (date) {
+      return date.getMonth() + '/' + date.getFullYear();
+    },
+
+    storeDate: function (date, formatted) {
+      if (this.value.length < this.multiple || this.multiple === true){
+        this.value.push(formatted);
+      }
+      else if (this.multiple === false){
+        this.value = [formatted];
+        this.selectedDate = {};
+      }
+
+      if (!Array.isArray(this.selectedDate[this.getDateKey(date)])){
+        this.selectedDate[this.getDateKey(date)] = [];
+      }
+
+      this.selectedDate[this.getDateKey(date)].push(date.getDate());
+    },
+
     selectDate: function(date) {
-      this.el.val(TimeFormat(this.dateFormat, date));
-      this.el.trigger('input');
-      this.el.blur();
+      var value = TimeFormat(this.dateFormat, date);
+
+      this.storeDate(date, value);
+      this.updateValue(this.value);
+    },
+
+    updateValue: function (value) {
+      this.el.trigger('pickr:selected', [value]);
+
+      if (!this.inline){
+        this.el.val(value.join(' '));
+        this.el.trigger('input');
+        this.el.blur();
+      }
+    },
+
+    canAddMoreDates: function () {
+      if (!this.multiple){
+        return true;
+      }
+      else if (this.multiple) {
+        if ($.type(this.multiple) === 'number') {
+          return this.value.length < this.multiple;
+        }
+        else {
+          return true;
+        }
+      }
+    },
+
+    selectedInMonth: function (date) {
+      return this.selectedDate[this.getDateKey(date)] || [];
     },
 
     daysInMonth: function(date) {

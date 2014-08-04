@@ -122,6 +122,9 @@
 .pickr-container .pickr-days .pickr-day:active {
   background: #c6dfed;
 }
+.pickr-container .pickr-days .pickr-day--selected {
+  background-color: #c6dfed;
+}
 .pickr-container .pickr-days .pickr-empty-day {
   padding: 15px 0;
 }
