@@ -24,12 +24,21 @@
       border-top-color: #c5c5c2;
       box-shadow: inset 0 1px 1px 0 #e4e4e2;
     }
+      h2 {
+        margin-top: 350px;
+      }
     </style>
   </head>
   <body>
     <form>
       <input type="text" id="date-picker" data-pickr data-pickr-format="%Y-%m-%d" placeholder="Select a date"/>
     </form>
+    <div>
+      <h1>Inline examples</h1>
+      <div id="inline"></div>
+      <h2>Multiple</h2>
+      <div id="multiple"></div>
+    </div>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/dateformat/dist/dateformat.js"></script>
     <script src="../bower_components/fidel/dist/fidel.js" data-cover></script>
@@ -37,7 +46,16 @@
     <script src="../bower_components/fidel-template/dist/fidel-template.js"></script>
     <script src="../dist/fidel.pickr.js" data-cover></script>
     <script>
-      $('#date-picker').pickr();
+      $('#date-picker').pickr().on('pickr:selected', function (e, date) {
+        console.log('New date selected:', date);
+      });
+      $('#inline').pickr().on('pickr:selected', function (e, date) {
+        console.log('New date selected:', date);
+      });
+      $('#multiple').pickr({ multiple: 2 }).on('pickr:selected', function (e, date) {
+        console.log('New date selected:', date);
+      });
+
     </script>
   </body>
 </html>
