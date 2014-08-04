@@ -33,6 +33,7 @@ suite('pickr', function() {
       assert.ok(el.hasClass('pickr'));
       assert.ok(el.next().attr('style') !== '');
       assert.ok(el.next().hasClass('pickr-container'));
+      assert.ok(el.next().hasClass('pickr-inline'));
     });
   });
 
