@@ -2,12 +2,10 @@ options:
   banner: '<%= meta.banner %>'
 dist:
   src:
-    - 'lib/timeformat.js'
     - 'lib/<%= name %>.js'
   dest: 'dist/fidel.<%= name %>.js'
 full:
   src:
     - 'dist/_bower.js'
-    - 'lib/timeformat.js'
     - 'lib/<%= name %>.js'
   dest: 'dist/<%= name %>.js'
