@@ -4,6 +4,7 @@
   @fontSize: 15px;
   @color: #372f2b;
   @width: 337px;
+  @inlineWidth: 100%;
   @background: #fff;
   @borderColor: #d6d6d6;
   @monthHeaderBackground: #372f2b;
@@ -23,6 +24,10 @@
 
   font-size: @fontSize;
   width: @width;
+
+  &.pickr-inline {
+    width: @inlineWidth;
+  }
 
   .pickr-month {
     color: #372f2b;
