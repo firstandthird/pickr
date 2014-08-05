@@ -279,8 +279,9 @@ suite('pickr', function() {
     test('dates can be un selected when they\'re clicked twice', function () {
       var called = 0;
 
-      el.on('pickr:selected', function () {
+      el.on('pickr:selected', function (e, values) {
         called++;
+        assert.ok(Array.isArray(values));
       });
 
       $day.eq(0).click();
