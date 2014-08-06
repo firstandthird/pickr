@@ -1,3 +1,10 @@
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .pickr-container {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -7,6 +14,10 @@
   position: absolute;
   display: block;
   font-size: 15px;
+  width: 337px;
+}
+.pickr-container.pickr-inline {
+  position: relative;
 }
 .pickr-container:after {
   content: ".";
@@ -84,8 +95,29 @@
 .pickr-container .pickr-next-month {
   right: 0;
 }
-.pickr-container .pickr-month {
+.pickr-container.pickr-inline {
   width: 337px;
+}
+.pickr-container.pickr-inline .pickr-days-labels .pickr-days-label,
+.pickr-container.pickr-inline .pickr-days .pickr-day,
+.pickr-container.pickr-inline .pickr-days .pickr-empty-day {
+  width: 48.142857142857146px;
+}
+.pickr-container.pickr-inline .pickr-days-labels .pickr-days-label:first-child,
+.pickr-container.pickr-inline .pickr-days .pickr-day:first-child,
+.pickr-container.pickr-inline .pickr-days .pickr-empty-day:first-child {
+  width: 46.142857142857146px;
+}
+.pickr-container.pickr-inline .pickr-day-first {
+  width: 47.142857142857146px !important;
+}
+.pickr-container.pickr-inline .pickr-day-first.pickr-empty-day {
+  width: 46.142857142857146px !important;
+}
+.pickr-container.pickr-inline .pickr-day-buffer:last-child {
+  margin-left: 1px;
+}
+.pickr-container .pickr-month {
   color: #372f2b;
 }
 .pickr-container .pickr-month-title {

@@ -1,4 +1,12 @@
 
+0.3.0 / 2014-08-06 
+==================
+
+  * Adding new option to mixin so it can adjust the width on inline
+  * If the pickr is inline container will relative
+  * Ensuring unselecting passes an array
+  * Replacing timeformat with dateformat
+
 0.2.0 / 2014-08-04 
 ==================
 
