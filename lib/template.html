@@ -17,26 +17,23 @@
         </div>
         
         <% if(month.start > 0) { %>
-        <div class="pickr-day-buffer">
           <% for(var d = 1; d < month.start+1; d++) { %>
-          <div class="pickr-empty-day">&nbsp;</div>
+          <div class="pickr-empty-day <%= (d === month.start) ? 'pickr-empty-day--last' : '' %>">&nbsp;</div>
           <% } %>
-        </div>
         <% } %>
 
         <% for(var d = 1; d < month.days+1; d++) { %>
         <% var isToday = (today.getMonth() === month.date.getMonth() && today.getDate() === d); %>
         <% var isSelected = month.selected.indexOf(d) > -1; %>
         <% var isPastDay = (!allowPastDays && ~~timef('%Y%m%d', new Date(month.date.getFullYear(), month.date.getMonth(), d)) < ~~timef('%Y%m%d', today)); %>
-        <div class="pickr-day<%= isToday ? ' pickr-today' : '' %><%= isPastDay ? ' pickr-past' : '' %><%= isSelected ? ' pickr-day--selected' : '' %>"><%= d %></div>
+        <% var firstDay = (d === 1); %>
+        <div class="pickr-day<%= isToday ? ' pickr-today' : '' %><%= isPastDay ? ' pickr-past' : '' %><%= isSelected ? ' pickr-day--selected' : '' %><%= firstDay ? ' pickr-first-day' : '' %>"><%= d %></div>
         <% } %>
 
         <% if(month.end > 0) { %>
-        <div class="pickr-day-buffer">
           <% for(var d = 1; d < month.end+1; d++) { %>
-          <div class="pickr-empty-day">&nbsp;</div>
+          <div class="pickr-empty-day <%= (d === month.end) ? 'pickr-empty-day--last' : '' %>">&nbsp;</div>
           <% } %>
-        </div>
         <% } %>
       </div>
     </div>
