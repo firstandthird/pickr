@@ -52,7 +52,7 @@
       $('#inline').pickr().on('pickr:selected', function (e, date) {
         console.log('New date selected:', date);
       });
-      $('#multiple').pickr({ multiple: 2 }).on('pickr:selected', function (e, date) {
+      $('#multiple').pickr({ multiple: true }).on('pickr:selected', function (e, date) {
         console.log('New date selected:', date);
       });
 
