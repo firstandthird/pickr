@@ -4,41 +4,6 @@
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
-.pickr-inline-width(@inlineWidth) when (ispixel(@inlineWidth)) {
-  .pickr-days-labels .pickr-days-label,
-  .pickr-days .pickr-day,
-  .pickr-days .pickr-empty-day {
-    width: @inlineWidth / 7;
-
-    &:first-child {
-      width: @inlineWidth / 7 - 2px;
-    }
-  }
-
-  .pickr-day-first {
-    &.pickr-empty-day {
-      width: @inlineWidth / 7 - 2px !important;
-    }
-    width: @inlineWidth / 7 - 1px !important;
-  }
-
-  .pickr-empty-day--last {
-    margin-left: 1px;
-
-    &:last-child {
-      margin-left: 0;
-    }
-  }
-}
-
-.pickr-inline-width(@inlineWidth) when not(ispixel(@inlineWidth)) {
-  .pickr-days-labels .pickr-days-label,
-  .pickr-days .pickr-day,
-  .pickr-days .pickr-empty-day {
-    width: @inlineWidth / 7;
-  }
-}
-
 .pickr(
   @fontSize: 15px;
   @color: #372f2b;
@@ -67,7 +32,17 @@
   &.pickr-inline {
     width: @inlineWidth;
 
-    .pickr-inline-width(@inlineWidth);
+    .pickr-days-labels .pickr-days-label,
+    .pickr-days .pickr-day,
+    .pickr-days .pickr-empty-day {
+      width: 100% / 7;
+    }
+
+    .pickr-empty-day--last {
+      &:last-child {
+        margin-left: 0;
+      }
+    }
   }
 
   .pickr-month {
