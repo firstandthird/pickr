@@ -190,9 +190,3 @@
   text-shadow: 0 -2px 0 #231e1b;
   color: #ffffff;
 }
-.pickr-container .pickr-prev-month {
-  border-right: 1px solid #413a36;
-}
-.pickr-container .pickr-next-month {
-  border-left: 1px solid #413a36;
-}

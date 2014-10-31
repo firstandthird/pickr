@@ -1,7 +1,7 @@
 
 /*!
  * pickr - A javascript datepicker
- * v0.3.1
+ * v0.3.2
  * https://github.com/firstandthird/pickr
  * copyright First + Third 2014
  * MIT License
@@ -397,6 +397,9 @@
       this.focus = false;
       this.value = [];
       this.selectedDate = {};
+
+      //set to 1st of month
+      this.currentMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), 1);
 
       if(this.el.data('pickr-format')) {
         this.dateFormat = this.el.data('pickr-format');
