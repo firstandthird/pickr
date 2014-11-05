@@ -33,6 +33,7 @@
 }
 .pickr-container .pickr-months .pickr-month {
   float: left;
+  width: 100%;
 }
 .pickr-container .pickr-months:after {
   content: ".";
@@ -101,21 +102,10 @@
 .pickr-container.pickr-inline .pickr-days-labels .pickr-days-label,
 .pickr-container.pickr-inline .pickr-days .pickr-day,
 .pickr-container.pickr-inline .pickr-days .pickr-empty-day {
-  width: 48.142857142857146px;
+  width: 14.285714285714286%;
 }
-.pickr-container.pickr-inline .pickr-days-labels .pickr-days-label:first-child,
-.pickr-container.pickr-inline .pickr-days .pickr-day:first-child,
-.pickr-container.pickr-inline .pickr-days .pickr-empty-day:first-child {
-  width: 46.142857142857146px;
-}
-.pickr-container.pickr-inline .pickr-day-first {
-  width: 47.142857142857146px !important;
-}
-.pickr-container.pickr-inline .pickr-day-first.pickr-empty-day {
-  width: 46.142857142857146px !important;
-}
-.pickr-container.pickr-inline .pickr-day-buffer:last-child {
-  margin-left: 1px;
+.pickr-container.pickr-inline .pickr-empty-day--last:last-child {
+  margin-left: 0;
 }
 .pickr-container .pickr-month {
   color: #372f2b;
@@ -158,12 +148,12 @@
   background-color: #c6dfed;
 }
 .pickr-container .pickr-days .pickr-empty-day {
-  padding: 15px 0;
-}
-.pickr-container .pickr-days .pickr-day-buffer {
   background: #f9f9f9;
-  border-right: 1px solid #d6d6d6;
+  padding: 15px 0;
   border-bottom: 1px solid #d6d6d6;
+}
+.pickr-container .pickr-days .pickr-empty-day--last {
+  border-right: 1px solid #d6d6d6;
 }
 .pickr-container .pickr-days-labels {
   background: #e4e4e4;
